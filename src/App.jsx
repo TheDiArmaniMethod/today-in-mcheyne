@@ -26,6 +26,12 @@ const TAB_INDEX = {
   "Secret 2": 3
 };
 
+const NEXT_TAB_BY_READING_LABEL = {
+  "Family Reading 1": "Family 2",
+  "Family Reading 2": "Secret 1",
+  "Secret Reading 1": "Secret 2"
+};
+
 function getTodayMonthDay() {
   const today = new Date();
   return {
@@ -62,6 +68,10 @@ function getReadingsForActiveTab(readings, activeTab) {
 
 function createBibleGatewayNKJVLink(reference) {
   return `https://www.biblegateway.com/passage/?search=${encodeURIComponent(reference)}&version=NKJV`;
+}
+
+function getNextTabForReadingLabel(label) {
+  return NEXT_TAB_BY_READING_LABEL[label] ?? null;
 }
 
 export default function App() {
@@ -231,6 +241,12 @@ export default function App() {
     setTimeout(() => scrollToReadingTop(), 0);
   }
 
+  function handleCompletedReadingNext(label) {
+    const nextTab = getNextTabForReadingLabel(label);
+    setActiveTab(nextTab ?? "All");
+    setTimeout(() => scrollToReadingTop(), 0);
+  }
+
   function goToPreviousDay() {
     let newMonth = selectedMonth;
     let newDay = selectedDay - 1;
@@ -384,6 +400,8 @@ export default function App() {
                   const passage = passageTexts[originalIndex] || [];
                   const error = passageErrors[originalIndex];
                   const isCompleted = progress[reading.label];
+                  const nextTab = getNextTabForReadingLabel(reading.label);
+                  const completedActionLabel = nextTab ? "Next Reading" : "View All";
 
                   return (
                     <article key={reading.label} className="reading-card">
@@ -428,7 +446,20 @@ export default function App() {
                         </div>
                       )}
 
-                      {isCompleted && <div className="completed-text">✓ Completed</div>}
+                      {isCompleted && (
+                        <div className="completed-actions">
+                          <div className="completed-text">{"\u2713"} Completed</div>
+                          {(nextTab || activeTab !== "All") && (
+                            <button
+                              type="button"
+                              onClick={() => handleCompletedReadingNext(reading.label)}
+                              className="completed-next-button"
+                            >
+                              {completedActionLabel}
+                            </button>
+                          )}
+                        </div>
+                      )}
                     </article>
                   );
                 })}

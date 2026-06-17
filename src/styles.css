@@ -338,11 +338,32 @@ select {
   background-color: #941b0c;
 }
 
-.completed-text {
+.completed-actions {
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.completed-text {
   color: #345830;
   font-size: 0.875rem;
   font-weight: 700;
+}
+
+.completed-next-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background-color: #432818;
+  color: #ffe6a7;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .app-footer {
