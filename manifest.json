@@ -1,0 +1,9 @@
+{
+  "name": "Today in M'Cheyne",
+  "short_name": "M'Cheyne",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff8e6",
+  "theme_color": "#432818",
+  "description": "Daily Bible reading plan by Robert Murray M'Cheyne."
+}
