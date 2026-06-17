@@ -439,7 +439,7 @@ export default function App() {
                         <div className="completion-actions">
                           <button
                             onClick={() => handleComplete(reading.label)}
-                            className={reading.label === "Secret Reading 2" ? "complete-button complete-button-final" : "complete-button"}
+                            className="complete-button"
                           >
                             {reading.label === "Secret Reading 2" ? "Complete Today's Readings" : "Mark Complete & Continue"}
                           </button>

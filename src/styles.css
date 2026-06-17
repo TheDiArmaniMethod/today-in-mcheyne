@@ -334,10 +334,6 @@ select {
   margin-top: 1rem;
 }
 
-.complete-button-final {
-  background-color: #941b0c;
-}
-
 .completed-actions {
   margin-top: 1rem;
   display: flex;
