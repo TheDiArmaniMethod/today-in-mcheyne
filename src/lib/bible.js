@@ -1,4 +1,5 @@
 import { getBookFilename } from "../data/books";
+import { publicPath } from "./paths";
 import { parsePassageReference } from "./references";
 
 const bookCache = new Map();
@@ -16,7 +17,7 @@ async function loadBook(version, bookName) {
     return bookCache.get(key);
   }
 
-  const response = await fetch(`/data/bible/${version}/${filename}.json`);
+  const response = await fetch(publicPath(`/data/bible/${version}/${filename}.json`));
 
   if (!response.ok) {
     throw new Error(`Could not load ${version.toUpperCase()} ${bookName}: ${response.status}`);

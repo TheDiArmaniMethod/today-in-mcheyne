@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getPassage } from "./lib/bible";
+import { publicPath } from "./lib/paths";
 import { loadBibleVersion, loadProgress, markReadingComplete, saveBibleVersion } from "./lib/progress";
 
 const MONTHS = [
@@ -94,7 +95,7 @@ export default function App() {
       setPlanLoadError(null);
 
       try {
-        const response = await fetch("/data/reading-plan/mcheyne-plan.json");
+        const response = await fetch(publicPath("/data/reading-plan/mcheyne-plan.json"));
 
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
