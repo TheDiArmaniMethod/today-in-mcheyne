@@ -141,12 +141,15 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    setActiveTab("Family 1");
+    setProgress(loadProgress(selectedMonth, selectedDay));
+  }, [selectedMonth, selectedDay]);
+
+  useEffect(() => {
     const selectedReading = readingPlan.find((entry) => entry.month === selectedMonth && entry.day === selectedDay);
 
     setPassageTexts({});
     setPassageErrors({});
-    setActiveTab("Family 1");
-    setProgress(loadProgress(selectedMonth, selectedDay));
 
     if (!selectedReading) {
       return;
